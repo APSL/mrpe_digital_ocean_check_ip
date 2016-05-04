@@ -19,6 +19,7 @@ setup(
     packages=find_packages(),
     install_requires=[
         "requests",
+        "click",
         ],
     entry_points={
         'console_scripts': [
