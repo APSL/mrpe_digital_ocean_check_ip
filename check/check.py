@@ -12,7 +12,12 @@ def check(ip, active):
     is_active = requests.get('http://169.254.169.254/metadata/v1/floating_ip/ipv4/active').text
     ip_assigned = requests.get('http://169.254.169.254/metadata/v1/floating_ip/ipv4/ip_address').text
 
-    if (ip, active) == (ip_assigned, bool(is_active)):
+    if is_active == 'true':
+        bool_active = True
+    else:
+        bool_active = False
+
+    if (ip, active) == (ip_assigned, bool_active):
         click.echo('Expected status for the float IP %s' % ip )
         sys.exit(0)
     else:
